@@ -15,18 +15,17 @@
  *    }
  */
 
-import { CHANGE_USERNAME } from './constants';
+import { FETCH_REQUEST } from './constants';
 
 /**
  * Changes the input field of the form
  *
- * @param  {string} username The new text of the input field
- *
  * @return {object} An action object with a type of CHANGE_USERNAME
  */
-export function changeUsername(username) {
+export function fetchRequestAction(projectId = 'A', modelId = 'XYZ') {
   return {
-    type: CHANGE_USERNAME,
-    username,
+    type: FETCH_REQUEST,
+    projectId,
+    modelId,
   };
 }

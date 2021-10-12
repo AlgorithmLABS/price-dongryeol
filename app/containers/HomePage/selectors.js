@@ -7,10 +7,16 @@ import { initialState } from './reducer';
 
 const selectHome = state => state.home || initialState;
 
-const makeSelectUsername = () =>
+const makeSelectData = () =>
   createSelector(
     selectHome,
-    homeState => homeState.username,
+    homeState => homeState.data,
   );
 
-export { selectHome, makeSelectUsername };
+const makeSelectLoading = () =>
+  createSelector(
+    selectHome,
+    homeState => homeState.loading,
+  );
+
+export { selectHome, makeSelectData, makeSelectLoading };

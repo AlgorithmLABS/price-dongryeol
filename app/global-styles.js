@@ -1,6 +1,10 @@
 import { createGlobalStyle } from 'styled-components';
 
 const GlobalStyle = createGlobalStyle`
+  *{
+    box-sizing: border-box;
+  }
+
   html,
   body {
     height: 100%;
@@ -26,6 +30,11 @@ const GlobalStyle = createGlobalStyle`
   label {
     font-family: Georgia, Times, 'Times New Roman', serif;
     line-height: 1.5em;
+  }
+
+  a{
+    all: unset;
+    cursor: pointer;
   }
 `;
 

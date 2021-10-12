@@ -1,28 +1,28 @@
 import React from 'react';
-import { FormattedMessage } from 'react-intl';
 
-import A from './A';
-import Img from './Img';
-import NavBar from './NavBar';
-import HeaderLink from './HeaderLink';
-import Banner from './banner.jpg';
-import messages from './messages';
+import styled from 'styled-components';
+import { Link } from 'react-router-dom';
+
+import LogoText from './LogoText';
+
+const HeaderContainer = styled.header`
+  width: 100%;
+  height: 56px;
+  padding: 0 24px;
+  background-color: #fff;
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+  border-bottom: 1px solid #f0f1f2;
+`;
 
 function Header() {
   return (
-    <div>
-      <A href="https://www.reactboilerplate.com/">
-        <Img src={Banner} alt="react-boilerplate - Logo" />
-      </A>
-      <NavBar>
-        <HeaderLink to="/">
-          <FormattedMessage {...messages.home} />
-        </HeaderLink>
-        <HeaderLink to="/features">
-          <FormattedMessage {...messages.features} />
-        </HeaderLink>
-      </NavBar>
-    </div>
+    <HeaderContainer>
+      <Link to="/">
+        <LogoText>PRICE PREDICTION</LogoText>
+      </Link>
+    </HeaderContainer>
   );
 }
 
