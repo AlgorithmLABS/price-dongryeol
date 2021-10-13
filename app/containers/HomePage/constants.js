@@ -14,3 +14,9 @@ export const FETCH_REQUEST = 'boilerplate/Home/FETCH_REQUEST';
 export const FETCH_FAIL = 'boilerplate/Home/FETCH_FAIL';
 
 export const FETCH_SUCCESS = 'boilerplate/Home/FETCH_SUCCESS';
+
+export const FETCH_POST_REQUEST = 'boilerplate/Home/FETCH_POST_REQUEST';
+
+export const FETCH_POST_FAIL = 'boilerplate/Home/FETCH_POST_FAIL';
+
+export const FETCH_POST_SUCCESS = 'boilerplate/Home/FETCH_POST_SUCCESS';

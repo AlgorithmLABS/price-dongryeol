@@ -15,7 +15,7 @@
  *    }
  */
 
-import { FETCH_REQUEST } from './constants';
+import { FETCH_POST_REQUEST, FETCH_REQUEST } from './constants';
 
 /**
  * Changes the input field of the form
@@ -27,5 +27,11 @@ export function fetchRequestAction(projectId = 'A', modelId = 'XYZ') {
     type: FETCH_REQUEST,
     projectId,
     modelId,
+  };
+}
+
+export function fetchPostRequestAction() {
+  return {
+    type: FETCH_POST_REQUEST,
   };
 }

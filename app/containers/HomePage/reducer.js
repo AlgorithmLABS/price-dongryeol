@@ -8,13 +8,21 @@
  */
 
 import produce from 'immer';
-import { FETCH_FAIL, FETCH_REQUEST, FETCH_SUCCESS } from './constants';
+import {
+  FETCH_FAIL,
+  FETCH_POST_FAIL,
+  FETCH_POST_REQUEST,
+  FETCH_POST_SUCCESS,
+  FETCH_REQUEST,
+  FETCH_SUCCESS,
+} from './constants';
 
 // The initial state of the App
 export const initialState = {
   loading: false,
   successful: false,
   data: {},
+  postData: {},
 };
 
 /* eslint-disable default-case, no-param-reassign */
@@ -35,6 +43,21 @@ const homeReducer = (state = initialState, action) =>
         draft.loading = false;
         draft.successful = true;
         draft.data = action.payload;
+        break;
+      case FETCH_POST_REQUEST:
+        draft.loading = true;
+        draft.successful = true;
+        draft.postData = initialState.postData;
+        break;
+      case FETCH_POST_FAIL:
+        draft.loading = false;
+        draft.successful = false;
+        draft.postData = initialState.postData;
+        break;
+      case FETCH_POST_SUCCESS:
+        draft.loading = false;
+        draft.successful = true;
+        draft.postData = action.payload;
         break;
       default:
         break;

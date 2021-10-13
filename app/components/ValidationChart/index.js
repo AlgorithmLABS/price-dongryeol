@@ -13,29 +13,38 @@ import {
 
 import styled from 'styled-components';
 import LegendText from './LegendText';
+import ShadowBox from '../ShadowBox';
+import TooltipContent from './TooltipContent';
 
-const ValidationContainer = styled.div`
+const ValidationContainer = styled(ShadowBox)`
   grid-area: validation;
   height: 400px;
-  background-color: #ffffff;
+  padding: 43px;
 `;
 
 function Validation({ list }) {
-  console.log(list);
   if (list.length && list.length > 0) {
     const rList = list.reverse();
     return (
       <ValidationContainer>
         <ResponsiveContainer>
           <BarChart data={rList} barCategoryGap={8} margin={{ top: 10 }}>
-            <XAxis dataKey="valid_id" />
+            <XAxis
+              dataKey="valid_id"
+              tickLine={false}
+              tick={{ stroke: '##828d99', fontSize: 12 }}
+            />
             <YAxis
               axisLine={false}
               tickLine={false}
               tickFormatter={t => `$${t}.00`}
-              tick={{ stroke: '##828d99' }}
+              tick={{ stroke: '##828d99', fontSize: 12 }}
             />
-            <Tooltip cursor={{ fill: 'transparent' }} position={{ y: 30 }} />
+            <Tooltip
+              cursor={{ fill: 'transparent' }}
+              position={{ y: 30 }}
+              content={<TooltipContent />}
+            />
             <Legend
               align="right"
               verticalAlign="top"
@@ -53,8 +62,18 @@ function Validation({ list }) {
               vertical={false}
               stroke="#f0f1f2"
             />
-            <Bar dataKey="pred" fill="#0099fe" barSize={5} />
-            <Bar dataKey="value" fill="#828d99" barSize={5} />
+            <Bar
+              dataKey="pred"
+              fill="#0099fe"
+              barSize={7}
+              radius={[5, 5, 0, 0]}
+            />
+            <Bar
+              dataKey="value"
+              fill="#828d99"
+              barSize={7}
+              radius={[5, 5, 0, 0]}
+            />
           </BarChart>
         </ResponsiveContainer>
       </ValidationContainer>

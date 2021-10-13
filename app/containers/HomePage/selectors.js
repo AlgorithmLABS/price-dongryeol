@@ -13,10 +13,16 @@ const makeSelectData = () =>
     homeState => homeState.data,
   );
 
+const makeSelectPostData = () =>
+  createSelector(
+    selectHome,
+    homeState => homeState.postData,
+  );
+
 const makeSelectLoading = () =>
   createSelector(
     selectHome,
     homeState => homeState.loading,
   );
 
-export { selectHome, makeSelectData, makeSelectLoading };
+export { selectHome, makeSelectData, makeSelectPostData, makeSelectLoading };

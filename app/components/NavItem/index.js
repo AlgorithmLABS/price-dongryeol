@@ -13,6 +13,7 @@ function NavItem({ icon, name, path }) {
     </NavLink>
   );
 }
+
 NavItem.propTypes = {
   icon: PropTypes.string,
   name: PropTypes.string.isRequired,

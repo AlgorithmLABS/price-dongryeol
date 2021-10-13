@@ -32,7 +32,7 @@ const GlobalStyle = createGlobalStyle`
     line-height: 1.5em;
   }
 
-  a{
+  a, button{
     all: unset;
     cursor: pointer;
   }

@@ -2,18 +2,29 @@
  * Gets the repositories of the user from Github
  */
 
-import { call, put, takeLatest } from 'redux-saga/effects';
+import { all, call, put, takeLatest } from 'redux-saga/effects';
 
-import { FETCH_FAIL, FETCH_REQUEST, FETCH_SUCCESS } from './constants';
-import { getInitApi } from './apis';
+import {
+  FETCH_FAIL,
+  FETCH_POST_REQUEST,
+  FETCH_REQUEST,
+  FETCH_SUCCESS,
+} from './constants';
+import { getInitApi, postApi } from './apis';
 
-/**
- * Github repos request/response handler
- */
 export function* getData(action) {
   const { projectId, modelId } = action;
   try {
     const payload = yield call(getInitApi, { projectId, modelId });
+    yield put({ type: FETCH_SUCCESS, payload });
+  } catch (error) {
+    yield put({ type: FETCH_FAIL });
+  }
+}
+
+export function* postData() {
+  try {
+    const payload = yield call(postApi);
     yield put({ type: FETCH_SUCCESS, payload });
   } catch (error) {
     yield put({ type: FETCH_FAIL });
@@ -28,5 +39,8 @@ export default function* rootSaga() {
   // By using `takeLatest` only the result of the latest API call is applied.
   // It returns task descriptor (just like fork) so we can continue execution
   // It will be cancelled automatically on component unmount
-  yield takeLatest(FETCH_REQUEST, getData);
+  yield all([
+    takeLatest(FETCH_REQUEST, getData),
+    takeLatest(FETCH_POST_REQUEST, postData),
+  ]);
 }
