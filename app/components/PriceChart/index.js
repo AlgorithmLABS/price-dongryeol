@@ -44,6 +44,7 @@ function Price({ data, openForm }) {
       { name: 'Group F', value: 50 },
     ];
   }
+  const chartList = featureList.filter(item => item.value > 0);
   return (
     <PriceContainer>
       {!data.feature && (
@@ -67,7 +68,7 @@ function Price({ data, openForm }) {
       <ResponsiveContainer height={200}>
         <PieChart>
           <Pie
-            data={featureList}
+            data={chartList}
             innerRadius={95}
             outerRadius={100}
             fill="#8884d8"
