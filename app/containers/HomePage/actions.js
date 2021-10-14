@@ -22,7 +22,7 @@ import { FETCH_POST_REQUEST, FETCH_REQUEST } from './constants';
  *
  * @return {object} An action object with a type of CHANGE_USERNAME
  */
-export function fetchRequestAction(projectId = 'A', modelId = 'XYZ') {
+export function fetchRequestAction({ projectId = 'A', modelId = 'XYZ' }) {
   return {
     type: FETCH_REQUEST,
     projectId,
@@ -30,8 +30,15 @@ export function fetchRequestAction(projectId = 'A', modelId = 'XYZ') {
   };
 }
 
-export function fetchPostRequestAction() {
+export function fetchPostRequestAction({
+  formData,
+  projectId = 'A',
+  modelId = 'XYZ',
+}) {
   return {
     type: FETCH_POST_REQUEST,
+    projectId,
+    modelId,
+    formData,
   };
 }

@@ -7,6 +7,13 @@ import Spec from './Spec';
 import Portion from './Portion';
 import Circle from './Circle';
 
+const ScrollBox = styled.div`
+  margin-top: 20px;
+  width: 100%;
+  height: 450px;
+  overflow: scroll;
+`;
+
 const TableContainer = styled.table`
   width: 100%;
   text-align: center;
@@ -14,42 +21,47 @@ const TableContainer = styled.table`
   border-spacing: 0 22px;
 `;
 
-function Table({ feature }) {
-  let keys = Object.keys(feature);
-  if (keys.length === 0) keys = [null, null, null, null, null, null];
-  const circleColor = ['#c99be4', '#fd4d7a', '#ffde00', '#73d500', '#0099fe'];
+function Table({ feature, colors }) {
   return (
-    <TableContainer>
-      <colgroup>
-        <col span="1" style={{ width: '60%' }} />
-        <col span="1" style={{ width: '20%' }} />
-        <col span="1" style={{ width: '20%' }} />
-      </colgroup>
-      <tr>
-        <Th />
-        <Th>SPEC</Th>
-        <Th>PORTION</Th>
-      </tr>
-      {keys.map((key, i) => (
-        <tr key={key}>
-          <Name>
-            <Circle bgColor={circleColor[i]} />
-            {key === null ? '-' : key}
-          </Name>
-          <Spec>{key === null ? '-' : feature[key].SPEC}</Spec>
-          <Portion>{key === null ? '-' : `$${feature[key].price}`}</Portion>
-        </tr>
-      ))}
-    </TableContainer>
+    <ScrollBox>
+      <TableContainer>
+        <colgroup>
+          <col span="1" style={{ width: '45%' }} />
+          <col span="1" style={{ width: '30%' }} />
+          <col span="1" style={{ width: '25%' }} />
+        </colgroup>
+        <tbody>
+          <tr>
+            <Th />
+            <Th>SPEC</Th>
+            <Th>PORTION</Th>
+          </tr>
+          {feature.map((item, i) => (
+            <tr key={item.name}>
+              <Name>
+                <Circle bgColor={colors[i]} />
+                {item.spec ? item.name : '-'}
+              </Name>
+              <Spec>{item.spec ? item.spec : '-'}</Spec>
+              <Portion>
+                {item.spec ? `$${Math.round(item.value * 100) / 100}` : '-'}
+              </Portion>
+            </tr>
+          ))}
+        </tbody>
+      </TableContainer>
+    </ScrollBox>
   );
 }
 
 Table.propTypes = {
-  feature: PropTypes.object,
+  feature: PropTypes.array,
+  colors: PropTypes.array,
 };
 
 Table.defaultProps = {
-  feature: {},
+  feature: [],
+  colors: [],
 };
 
 export default Table;

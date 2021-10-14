@@ -30,32 +30,42 @@ import Form from '../../components/Form';
 
 const key = 'home';
 
-export function HomePage({ data, loading, loadData }) {
+export function HomePage({ data, postData, loadData, loadPostData }) {
   useInjectReducer({ key, reducer });
   useInjectSaga({ key, saga });
 
-  const [openForm, setOpenForm] = useState(true);
+  const [openForm, setOpenForm] = useState(false);
 
   const openFormFn = () => setOpenForm(true);
 
   const closeFormFn = () => setOpenForm(false);
 
   useEffect(() => {
-    loadData();
+    loadData({});
   }, []);
+
   useEffect(() => {
-    console.log(data);
-  }, [data, loading]);
+    if (postData) {
+      closeFormFn();
+    }
+  }, [postData]);
 
   return (
     <MainContainer>
       <GridContainer>
-        <PriceChart openForm={openFormFn} />
+        <PriceChart openForm={openFormFn} data={postData} />
         <ModelInfo {...data.modelInfo} />
         <CoefficientChart {...data.modelInfo} />
         <ValidationChart list={data.validation} />
       </GridContainer>
-      {openForm && <Form closeForm={closeFormFn} />}
+      {openForm && (
+        <Form
+          data={postData}
+          featureList={data.modelInfo.feature_list}
+          closeForm={closeFormFn}
+          submitFn={loadPostData}
+        />
+      )}
     </MainContainer>
   );
 }
@@ -74,12 +84,12 @@ const mapStateToProps = createStructuredSelector({
   loading: makeSelectLoading(),
 });
 
-export function mapDispatchToProps(dispatch) {
-  return {
-    loadData: () => dispatch(fetchRequestAction()),
-    loadPostData: () => dispatch(fetchPostRequestAction()),
-  };
-}
+const mapDispatchToProps = dispatch => ({
+  loadData: ({ projectId, modelId }) =>
+    dispatch(fetchRequestAction({ projectId, modelId })),
+  loadPostData: ({ formData, projectId, modelId }) =>
+    dispatch(fetchPostRequestAction({ formData, projectId, modelId })),
+});
 
 const withConnect = connect(
   mapStateToProps,

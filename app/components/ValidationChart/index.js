@@ -15,24 +15,31 @@ import styled from 'styled-components';
 import LegendText from './LegendText';
 import ShadowBox from '../ShadowBox';
 import TooltipContent from './TooltipContent';
+import TitleBox from './TitleBox';
+import Title from './Title';
 
 const ValidationContainer = styled(ShadowBox)`
+  position: relative;
   grid-area: validation;
   height: 400px;
-  padding: 43px;
+  padding: 34px 36px;
 `;
 
 function Validation({ list }) {
   if (list.length && list.length > 0) {
-    const rList = list.reverse();
     return (
       <ValidationContainer>
+        <TitleBox>
+          <Title>모델 평가 결과 (Validation)</Title>
+        </TitleBox>
         <ResponsiveContainer>
-          <BarChart data={rList} barCategoryGap={8} margin={{ top: 10 }}>
+          <BarChart data={list} barCategoryGap={8} margin={{ top: 10 }}>
             <XAxis
               dataKey="valid_id"
               tickLine={false}
+              tickMargin={10}
               tick={{ stroke: '##828d99', fontSize: 12 }}
+              reversed
             />
             <YAxis
               axisLine={false}

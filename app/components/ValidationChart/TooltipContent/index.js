@@ -13,9 +13,9 @@ function TooltipContent({ active, payload, label }) {
         <Label>{label}</Label>
         <PayloadBox>
           {payload.map(p => (
-            <Payload>
+            <Payload key={p.dataKey}>
               <Circle color={p.color} />
-              <span>${p.value.toString().slice(0, 5)}</span>
+              <span>${Math.round(p.value * 100) / 100}</span>
             </Payload>
           ))}
         </PayloadBox>
@@ -29,7 +29,7 @@ function TooltipContent({ active, payload, label }) {
 TooltipContent.propTypes = {
   active: PropTypes.bool,
   payload: PropTypes.array,
-  label: PropTypes.string,
+  label: PropTypes.oneOfType([PropTypes.number, PropTypes.string]),
 };
 
 export default TooltipContent;

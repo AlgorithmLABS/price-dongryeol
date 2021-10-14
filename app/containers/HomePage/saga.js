@@ -6,7 +6,9 @@ import { all, call, put, takeLatest } from 'redux-saga/effects';
 
 import {
   FETCH_FAIL,
+  FETCH_POST_FAIL,
   FETCH_POST_REQUEST,
+  FETCH_POST_SUCCESS,
   FETCH_REQUEST,
   FETCH_SUCCESS,
 } from './constants';
@@ -22,12 +24,13 @@ export function* getData(action) {
   }
 }
 
-export function* postData() {
+export function* postData(action) {
+  const { projectId, modelId, formData } = action;
   try {
-    const payload = yield call(postApi);
-    yield put({ type: FETCH_SUCCESS, payload });
+    const payload = yield call(postApi, { projectId, modelId, formData });
+    yield put({ type: FETCH_POST_SUCCESS, payload });
   } catch (error) {
-    yield put({ type: FETCH_FAIL });
+    yield put({ type: FETCH_POST_FAIL });
   }
 }
 

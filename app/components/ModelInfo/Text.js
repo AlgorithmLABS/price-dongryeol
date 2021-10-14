@@ -1,6 +1,7 @@
 import styled from 'styled-components';
 
 const Text = styled.span`
+  display: block;
   font-family: AppleSDGothicNeo;
   font-size: 11px;
   font-weight: normal;

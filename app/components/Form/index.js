@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react';
+import React from 'react';
 import PropTypes from 'prop-types';
 import styled from 'styled-components';
 import { useForm } from 'react-hook-form';
@@ -19,16 +19,37 @@ const FormContainer = styled.form`
   background-color: #fafbfb;
 `;
 
-function Form({ closeForm }) {
-  const { register, watch, getValues, handleSubmit } = useForm();
+function Form({ data, featureList, closeForm, submitFn }) {
+  const optionList = featureList.map(item => JSON.parse(item));
 
-  useEffect(() => {
-    console.log(getValues());
-  }, [watch()]);
+  const defaultData = {};
+  if (data.feature) {
+    const { feature } = data;
+    const keys = Object.keys(feature);
+    keys.forEach(key => {
+      defaultData[key] = feature[key].SPEC;
+    });
+  }
 
-  const onSubmit = v => {
-    console.log(v);
+  const { register, handleSubmit } = useForm({
+    defaultValues: {
+      ...(data.product_name && { productName: data.product_name }),
+      ...(data.feature && { ...defaultData }),
+    },
+  });
+
+  const onSubmit = values => {
+    const formData = {};
+    const keys = Object.keys(values);
+    keys.forEach(key => {
+      const value = values[key];
+      if (value) {
+        formData[key] = value;
+      }
+    });
+    submitFn({ formData });
   };
+
   return (
     <Dim>
       <FormContainer onSubmit={handleSubmit(onSubmit)}>
@@ -37,7 +58,7 @@ function Form({ closeForm }) {
           <BigInput {...register('productName')} />
           <CloseButton src={CloseIconSrc} onClick={closeForm} />
         </TopBox>
-        <FormTable register={register} />
+        <FormTable register={register} optionList={optionList} />
         <Button>
           가격 예측하기
           <Icon src={IconSrc} />
@@ -49,6 +70,9 @@ function Form({ closeForm }) {
 
 Form.propTypes = {
   closeForm: PropTypes.func,
+  submitFn: PropTypes.func,
+  data: PropTypes.object,
+  featureList: PropTypes.array,
 };
 
 export default Form;

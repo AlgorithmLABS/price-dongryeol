@@ -48,20 +48,23 @@ export function getInitApi({ projectId, modelId }) {
   });
 }
 
-export function postApi({ projectId, modelId }) {
+export function postApi({ formData, projectId, modelId }) {
   const headers = {
     Accept: 'application/json',
     'Content-Type': 'application/json',
   };
-  let params = '?';
-  if (projectId)
-    params += `${params.length > 1 ? '&' : ''}project_id=${projectId}`;
-  if (modelId) params += `${params.length > 1 ? '&' : ''}model_id=${modelId}`;
-  if (params.length === 1) params = '';
+  const { productName, ...feature } = formData;
   const options = {
-    method: 'GET',
+    method: 'POST',
     headers,
-    url: `${!API_URL ? process.env.API_URL : API_URL}/init/${params}`,
+    url: `${!API_URL ? process.env.API_URL : API_URL}/post/`,
+    data: {
+      is_blank: true,
+      model_id: modelId,
+      project_id: projectId,
+      product_name: productName,
+      data: feature,
+    },
   };
   return new Promise((resolve, reject) => {
     axios(options)

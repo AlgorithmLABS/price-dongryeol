@@ -20,16 +20,28 @@ const SelectContainer = styled.select`
   color: #304156;
 `;
 
-function Select({ register, name, options }) {
-  const selectOption = [{ value: '', text: 'No data' }, ...options];
-  console.log(selectOption);
+function Select({ register, name, options, type }) {
+  const selectOption = ['No data', ...options];
   return (
-    <SelectContainer {...register(name)}>
-      {selectOption.map(o => (
-        <Option key={o.text} value={o.value}>
-          {o.text}
-        </Option>
-      ))}
+    <SelectContainer
+      {...register(name, {
+        ...(type === 'boolean' && { valueAsNumber: true }),
+        ...(typeof options[0] === 'number' && { valueAsNumber: true }),
+      })}
+    >
+      {type === 'boolean' ? (
+        <>
+          <Option value="">No data</Option>
+          <Option value={0}>X</Option>
+          <Option value={1}>O</Option>
+        </>
+      ) : (
+        selectOption.map(o => (
+          <Option key={o} value={o === 'No data' ? '' : o}>
+            {o}
+          </Option>
+        ))
+      )}
     </SelectContainer>
   );
 }
@@ -38,6 +50,7 @@ Select.propTypes = {
   register: PropTypes.func,
   name: PropTypes.string,
   options: PropTypes.array,
+  type: PropTypes.string,
 };
 
 Select.defaultProps = {
