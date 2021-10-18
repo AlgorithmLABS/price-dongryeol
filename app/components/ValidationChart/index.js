@@ -35,7 +35,7 @@ function Validation({ list }) {
         <ResponsiveContainer>
           <BarChart data={list} barCategoryGap={8} margin={{ top: 10 }}>
             <XAxis
-              dataKey="valid_id"
+              dataKey="product_name"
               tickLine={false}
               tickMargin={10}
               tick={{ stroke: '##828d99', fontSize: 12 }}
