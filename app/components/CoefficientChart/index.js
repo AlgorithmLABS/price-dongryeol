@@ -19,11 +19,16 @@ const CoefficientContainer = styled(ShadowBox)`
   grid-area: coefficient;
   max-height: 50vh;
   overflow-y: hidden;
+  position: relative;
 `;
 
 const ScrollBox = styled.div`
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
   max-height: 80%;
-  padding: 0 30px;
+  padding: 0px 30px;
   overflow-y: scroll;
 `;
 
