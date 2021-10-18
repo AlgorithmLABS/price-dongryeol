@@ -5,6 +5,7 @@ import Feature from './Feature';
 import Th from './Th';
 import Input from '../Input';
 import Select from '../Select';
+import { DATA_TYPE, NO_DATA_STR } from '../constants';
 
 const ScrollBox = styled.div`
   padding: 21.5px 12px;
@@ -37,7 +38,8 @@ function FormTable({ register, optionList }) {
           </tr>
           {optionList.map(item => {
             const isSelect =
-              item.dataType === 'categorical' || item.dataType === 'boolean';
+              item.dataType === DATA_TYPE.CATEGORY ||
+              item.dataType === DATA_TYPE.BOOLEAN;
             return (
               <tr key={item.featureTitle}>
                 <Feature>{item.featureTitle}</Feature>
@@ -51,10 +53,10 @@ function FormTable({ register, optionList }) {
                     />
                   ) : (
                     <Input
-                      placeholder="No data"
+                      placeholder={NO_DATA_STR}
                       type="number"
                       min={0}
-                      {...item.dataType === 'float' && { step: 0.01 }}
+                      {...item.dataType === DATA_TYPE.FLOAT && { step: 0.01 }}
                       {...register(item.featureTitle, {
                         valueAsNumber: true,
                       })}

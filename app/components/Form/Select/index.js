@@ -2,6 +2,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import styled from 'styled-components';
 import Option from './Option';
+import { DATA_TYPE, NO_DATA_STR } from '../constants';
 
 const SelectContainer = styled.select`
   width: 128px;
@@ -21,15 +22,15 @@ const SelectContainer = styled.select`
 `;
 
 function Select({ register, name, options, type }) {
-  const selectOption = ['No data', ...options];
+  const selectOption = [NO_DATA_STR, ...options];
   return (
     <SelectContainer
       {...register(name, {
-        ...(type === 'boolean' && { valueAsNumber: true }),
+        ...(type === DATA_TYPE.BOOLEAN && { valueAsNumber: true }),
         ...(typeof options[0] === 'number' && { valueAsNumber: true }),
       })}
     >
-      {type === 'boolean' ? (
+      {type === DATA_TYPE.BOOLEAN ? (
         <>
           <Option value="">No data</Option>
           <Option value={0}>X</Option>
@@ -37,7 +38,7 @@ function Select({ register, name, options, type }) {
         </>
       ) : (
         selectOption.map(o => (
-          <Option key={o} value={o === 'No data' ? '' : o}>
+          <Option key={o} value={o === NO_DATA_STR ? '' : o}>
             {o}
           </Option>
         ))
