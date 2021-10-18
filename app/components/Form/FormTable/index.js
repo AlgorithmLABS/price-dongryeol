@@ -53,6 +53,8 @@ function FormTable({ register, optionList }) {
                     <Input
                       placeholder="No data"
                       type="number"
+                      min={0}
+                      {...item.dataType === 'float' && { step: 0.01 }}
                       {...register(item.featureTitle, {
                         valueAsNumber: true,
                       })}
