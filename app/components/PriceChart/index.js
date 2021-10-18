@@ -14,7 +14,7 @@ import DimText from './DimText';
 import CustomLabel from './CustomLabel';
 
 const PriceContainer = styled(ShadowBox)`
-  padding: 36px 48px;
+  padding: 10%;
   grid-area: price;
   position: relative;
 `;
@@ -65,7 +65,7 @@ function Price({ data, openForm }) {
           </Button>
         )}
       </TopBox>
-      <ResponsiveContainer height={200}>
+      <ResponsiveContainer maxHeight={200}>
         <PieChart>
           <Pie
             data={chartList}

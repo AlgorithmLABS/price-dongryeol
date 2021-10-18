@@ -15,8 +15,10 @@ import Title from './Title';
 import ShadowBox from '../ShadowBox';
 
 const CoefficientContainer = styled(ShadowBox)`
-  height: 400px;
+  min-height: 400px;
   grid-area: coefficient;
+  max-height: 50vh;
+  overflow-y: hidden;
 `;
 
 const ScrollBox = styled.div`

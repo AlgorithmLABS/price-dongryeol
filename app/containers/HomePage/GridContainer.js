@@ -2,7 +2,6 @@ import styled from 'styled-components';
 
 const GridContainer = styled.div`
   display: grid;
-  grid-template-rows: repeat(2, 1fr);
   grid-template-columns: 5fr 4fr 6fr;
   grid-template-areas:
     'price modelInfo coefficient'

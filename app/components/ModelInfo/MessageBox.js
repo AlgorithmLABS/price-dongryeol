@@ -1,7 +1,7 @@
 import styled from 'styled-components';
 
 const MessageBox = styled.div`
-  padding: 12px 20px;
+  padding: 8%;
   position: relative;
   display: inline-block;
   width: 100%;

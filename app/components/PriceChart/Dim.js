@@ -12,6 +12,8 @@ const Dim = styled.div`
   flex-direction: column;
   align-items: center;
   justify-content: center;
+  padding: 10%;
+  text-align: center;
 `;
 
 export default Dim;

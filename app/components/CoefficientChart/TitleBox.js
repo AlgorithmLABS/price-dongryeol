@@ -1,7 +1,8 @@
 import styled from 'styled-components';
 
 const TitleBox = styled.div`
-  padding: 36px 0 15px 48px;
+  padding: 10% 0 5% 0%;
+  text-align: center;
 `;
 
 export default TitleBox;

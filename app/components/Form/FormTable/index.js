@@ -11,6 +11,7 @@ const ScrollBox = styled.div`
   margin-bottom: 21.5px;
   width: 555px;
   height: 500px;
+  max-height: 50vh;
   overflow: scroll;
 `;
 
