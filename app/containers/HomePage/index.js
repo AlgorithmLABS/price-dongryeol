@@ -60,8 +60,10 @@ export function HomePage({ data, postData, loadData, loadPostData }) {
       </GridContainer>
       {openForm && (
         <Form
+          {...data.modelInfo && {
+            featureList: data.modelInfo.feature_list,
+          }}
           data={postData}
-          featureList={data.modelInfo.feature_list}
           closeForm={closeFormFn}
           submitFn={loadPostData}
         />

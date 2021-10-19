@@ -20,7 +20,9 @@ const FormContainer = styled.form`
 `;
 
 function Form({ data, featureList, closeForm, submitFn }) {
-  const optionList = featureList.map(item => JSON.parse(item));
+  const optionList = featureList
+    ? featureList.map(item => JSON.parse(item))
+    : [];
 
   const defaultData = {};
   if (data.feature) {
