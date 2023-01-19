@@ -11,7 +11,12 @@ import ModelName from './ModelName';
 
 const ModelInfoContainer = styled(ShadowBox)`
   grid-area: modelInfo;
-  padding 15% 10%;
+
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+
+  padding 0 10%;
   text-align: center;
 `;
 

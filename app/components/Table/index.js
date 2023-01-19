@@ -10,7 +10,7 @@ import Circle from './Circle';
 const ScrollBox = styled.div`
   margin-top: 20px;
   width: 100%;
-  height: 450px;
+  height: 100%;
   overflow: scroll;
 `;
 

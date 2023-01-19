@@ -9,6 +9,7 @@ const MessageText = styled.span`
   line-height: 1.67;
   letter-spacing: normal;
   text-align: center;
+  word-break: keep-all;
   color: #304156;
   & strong {
     font-weight: bold;

@@ -1,7 +1,9 @@
 import styled from 'styled-components';
 
 const MainContainer = styled.main`
-  padding: 64px 84px 60px;
+  height: 85%;
+
+  padding: 30px 84px;
   background-color: #fafbfb;
 `;
 

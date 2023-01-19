@@ -20,6 +20,9 @@ import GlobalStyle from '../../global-styles';
 
 const AppWrapper = styled.div`
   height: 100vh;
+
+  display: flex;
+  flex-direction: column;
 `;
 
 export default function App() {

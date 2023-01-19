@@ -7,8 +7,6 @@ const GlobalStyle = createGlobalStyle`
 
   html,
   body {
-    height: 100%;
-    width: 100%;
     line-height: 1.5;
   }
 
@@ -22,8 +20,7 @@ const GlobalStyle = createGlobalStyle`
 
   #app {
     background-color: #fafafa;
-    min-height: 100%;
-    min-width: 100%;
+    height: 100vh;
   }
 
   p,

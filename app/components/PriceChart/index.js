@@ -14,7 +14,10 @@ import DimText from './DimText';
 import CustomLabel from './CustomLabel';
 
 const PriceContainer = styled(ShadowBox)`
-  padding: 10%;
+  display: flex;
+  flex-direction: column;
+
+  padding: 6%;
   grid-area: price;
   position: relative;
 `;
